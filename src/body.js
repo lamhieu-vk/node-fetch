@@ -180,7 +180,10 @@ Body.mixIn = function (proto) {
  * @return  Promise
  */
 function consumeBody() {
-	if (this[INTERNALS].disturbed) {
+	if (
+		this[INTERNALS].disturbed &&
+		(this.strict ?? true)
+	) {
 		return Body.Promise.reject(new TypeError(`body used already for: ${this.url}`));
 	}
 

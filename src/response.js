@@ -41,7 +41,8 @@ export default class Response {
 			status,
 			statusText: opts.statusText || STATUS_CODES[status],
 			headers,
-			counter: opts.counter
+			counter: opts.counter,
+			strict: opts.strict === undefined ? true : Boolean(opts.strict),
 		};
 	}
 
@@ -70,6 +71,14 @@ export default class Response {
 
 	get headers() {
 		return this[INTERNALS].headers;
+	}
+
+	get strict() {
+		return this[INTERNALS].strict;
+	}
+
+	set strict(value) {
+		this[INTERNALS].strict = value;
 	}
 
 	/**
