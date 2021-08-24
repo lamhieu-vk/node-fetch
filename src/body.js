@@ -182,7 +182,7 @@ Body.mixIn = function (proto) {
 function consumeBody() {
 	if (
 		this[INTERNALS].disturbed &&
-		(this.strict ?? true)
+		(typeof this.strict === 'boolean' ? this.strict : true)
 	) {
 		return Body.Promise.reject(new TypeError(`body used already for: ${this.url}`));
 	}
